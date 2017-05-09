@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>自助打印服务</title>
+   <link href="static/css/bootstrap.min.css" rel="stylesheet">
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+</head>
+<body>
+
+<div class="container">
+
+ {% if msg %}
+    <p class=error><strong>Message:</strong> {{ msg }}
+  {% endif %}
+
+      <h1>自助打印服务<small> Powered by : Ekinghao </small></h1>
+
+<hr>
+
+
+<form action="/print">
+     <div class="row" >
+     <div class="col-xs-6"> <textarea name="content" class="form-control"  rows="10"  placeholder="要打印的内容" required="true">
+     </textarea>
+     </div>
+     </div>
+
+      <input type = "hidden" name="cmd" value="text">
+      <input type = "submit" class="btn btn-default" value="打印文本">
+</form>
+
+<br>
+
+
+<form action="/print">
+     <input type ="text" name="content" class="form-control"  placeholder="二维码内容" required="true">
+      <input type = "hidden" name="cmd" value="qr">
+      <input type = "submit" class="btn btn-default" value="打印二维码">
+</form>
+
+<br>
+
+<form action="/print">
+     <input type ="text" name="content" class="form-control"  placeholder="条形码内容" required="true">
+      <input type = "hidden" name="cmd" value="barcode">
+      <input type = "submit" class="btn btn-default" value="打印条形码">
+</form>
+
+<br>
+
+<form action="/print">
+
+
+
+        <select class="form-control" name="content" required>
+        {% for img in imgs %}
+        <option value="{{img}}">{{img}}</option>
+        {% endfor %}
+        </select>
+      <input type = "hidden" name="cmd" value="file">
+      <input type = "submit" class="btn btn-default" value="打印图片">
+</form>
+
+
+
+</div>
+
+</body>
+</html>
